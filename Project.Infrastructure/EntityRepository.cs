@@ -32,19 +32,21 @@ namespace Project.Application
            
         }
 
-        List<Entity> IEntityRepository.GetAllEntities()
+        public List<Entity> GetAllEntities()
         {
             return projectDbContext.Entities.ToList();   
         }
 
-        Entity IEntityRepository.GetEntityById(int id)
+        public Entity? GetEntityById(int id)
         {
-            throw new NotImplementedException();
+            return projectDbContext.Entities.SingleOrDefault(e => e.Id == id);
         }
 
-        Entity IEntityRepository.UpdateEntity(Entity entity)
+        public Entity? UpdateEntity(Entity entity)
         {
-            throw new NotImplementedException();
+             projectDbContext.Entities.Update(entity);
+             projectDbContext.SaveChanges();
+             return projectDbContext.Entities.SingleOrDefault(e => e.Id == entity.Id);
         }
     }
 }

@@ -3,8 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using Project.Application;
 using Project.Domain;
 
+
 namespace Project.API.Controllers
 {
+    [ApiController]
+    [Route("api/[controller]")]
     public class EntityController : Controller
     {
        
@@ -14,6 +17,7 @@ namespace Project.API.Controllers
             this.entityService = entityService;
         }
 
+        [HttpGet("{id}")]
         // GET: EntityController/Details/5
         public ActionResult<Entity> Details(int id)
         {
@@ -31,14 +35,15 @@ namespace Project.API.Controllers
         {
             return entityService.AddEntity(entity);
         }
-
+        
+        [HttpPatch]
         // GET: EntityController/Edit/5
-        public ActionResult<Entity> Edit(int id)
+        public ActionResult<Entity?> Edit([FromBody] Entity entity)
         {
-            return entityService.UpdateEntity(entityService.GetEntityById(id));    
+            return entityService.UpdateEntity(entity);    
         }
 
-
+        [HttpDelete("{id}")]
         // GET: EntityController/Delete/5
         public ActionResult<bool> Delete(int id)
         {
