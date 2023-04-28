@@ -9,29 +9,36 @@ namespace Project.Application
 {
     public class EntityService : IEntityService
     {
-        Entity IEntityService.AddEntity(Entity entity)
+        private readonly IEntityRepository entityRepository;
+
+        public EntityService(IEntityRepository entityRepository)
+        { 
+            this.entityRepository = entityRepository;
+            
+        }
+        public Entity? AddEntity(Entity entity)
         {
-            throw new NotImplementedException();
+            return entityRepository.AddEntity(entity);
         }
 
-        bool IEntityService.DeleteEntity(int id)
+        public bool DeleteEntity(int id)
         {
-            throw new NotImplementedException();
+            return entityRepository.DeleteEntity(id);
         }
 
-        List<Entity> IEntityService.GetAllEntities()
+        public List<Entity> GetAllEntities()
         {
-            throw new NotImplementedException();
+            return entityRepository.GetAllEntities();
         }
 
-        Entity IEntityService.GetEntityById(int id)
+        public Entity? GetEntityById(int id)
         {
-            throw new NotImplementedException();
+            return entityRepository.GetEntityById(id);
         }
 
-        Entity IEntityService.UpdateEntity(Entity entity)
+        public Entity? UpdateEntity(Entity entity)
         {
-            throw new NotImplementedException();
+            return entityRepository.UpdateEntity(entity);
         }
     }
 }

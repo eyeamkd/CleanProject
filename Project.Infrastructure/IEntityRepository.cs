@@ -7,11 +7,11 @@ using System.Threading.Tasks;
 
 namespace Project.Application
 {
-    public interface IEntityService
+    public interface IEntityRepository
     {
-        Entity? AddEntity(Entity entity);
-        List<Entity> GetAllEntities();
+        Entity? AddEntity(Entity entity); 
         Entity? GetEntityById(int id);
+        List<Entity> GetAllEntities();
         Entity? UpdateEntity(Entity entity);
         bool DeleteEntity(int id);
     }

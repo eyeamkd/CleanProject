@@ -10,14 +10,8 @@ var migrationAssembly = configurationManager
                         .GetSection("MigrationAssembly").Value;
 
 // Add services to the container.
-builder.Services.AddDbContext<ProjectDBContext>(options => options.UseSqlite(connectionString));
+builder.Services.AddDbContext<ProjectDBContext>();
 
-var dbContextOptionsBuilder = new DbContextOptionsBuilder<ProjectDBContext>();
-dbContextOptionsBuilder.UseSqlite(migrationAssembly);
-
-builder.Services.AddDbContext<ProjectDBContext>(
-    options => options.UseSqlite(connectionString, 
-    b => b.MigrationsAssembly("Project.API")));
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
